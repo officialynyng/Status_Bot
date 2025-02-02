@@ -47,9 +47,9 @@ async def check_youtube_stream():
                 stream_url = f"https://www.youtube.com/watch?v={video_id}"
 
                 embed = discord.Embed(
-                    title=f"LIVE: {title}",
+                    title=f"🔴 LIVE NOW: {title}",
                     url=stream_url,
-                    description="Come say hi.",
+                    description="Click the link above to watch the stream!",
                     color=discord.Color.red()
                 )
                 embed.set_image(url=thumbnail)
@@ -65,7 +65,7 @@ async def check_youtube_stream():
                         except discord.NotFound:
                             pass  # If the message was already deleted
 
-                    notification = await channel.send(f"🛜ynyng is live.")
+                    notification = await channel.send(f"🚀 **{title}** is now live! Watch here: {stream_url}")
                     last_notification_id = notification.id  # Store new notification ID
                     was_live = True  # Prevent duplicate notifications
 
@@ -80,8 +80,8 @@ async def check_youtube_stream():
                         pass  # If the message was already deleted
 
                 embed = discord.Embed(
-                    title="Currently Offline",
-                    description="Checking ynyng's LIVE status every (60) seconds.",
+                    title="⚫ Currently Offline",
+                    description="Stay tuned for the next live stream!",
                     color=discord.Color.dark_gray()
                 )
                 await message.edit(content="", embed=embed)
@@ -98,3 +98,4 @@ async def on_ready():
     client.loop.create_task(check_youtube_stream())
 
 client.run(DISCORD_TOKEN)
+
