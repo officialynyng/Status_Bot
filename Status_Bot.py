@@ -2,6 +2,7 @@ import discord
 import requests
 import asyncio
 import os
+import datetime
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -23,19 +24,22 @@ was_live = False  # Tracks whether the last check detected a live stream
 last_notification_id = None  # Stores last live notification message ID
 
 async def check_youtube_stream():
-    """Check if the YouTube channel is live and update the Discord message."""
+    """Continuously check YouTube live status and update Discord."""
     global was_live, last_notification_id
     await client.wait_until_ready()
     channel = client.get_channel(DISCORD_CHANNEL_ID)
 
     try:
-        message = await channel.fetch_message(MESSAGE_ID)  # Fetch existing status message
+        message = await channel.fetch_message(MESSAGE_ID)
     except discord.NotFound:
-        print("Error: Message ID not found. Ensure the bot has permission to access the channel.")
+        print("⚠️ Error: Message ID not found. Ensure the bot has permission to access the channel.")
         return
 
     while not client.is_closed():
         try:
+            now = datetime.datetime.utcnow()
+            print(f"🔄 [{now}] Checking YouTube for live status...")
+
             response = requests.get(YOUTUBE_API_URL).json()
             live_streams = response.get("items", [])
 
@@ -56,28 +60,26 @@ async def check_youtube_stream():
 
                 await message.edit(content="", embed=embed)
 
-                # Notify once per stream and delete the last notification
                 if not was_live:
                     if last_notification_id:
                         try:
                             last_message = await channel.fetch_message(last_notification_id)
                             await last_message.delete()
                         except discord.NotFound:
-                            pass  # If the message was already deleted
+                            pass  
 
                     notification = await channel.send(f"🚀 **{title}** is now live! Watch here: {stream_url}")
-                    last_notification_id = notification.id  # Store new notification ID
-                    was_live = True  # Prevent duplicate notifications
+                    last_notification_id = notification.id
+                    was_live = True  
 
             else:
-                # Delete the last live notification when going offline
                 if was_live and last_notification_id:
                     try:
                         last_message = await channel.fetch_message(last_notification_id)
                         await last_message.delete()
-                        last_notification_id = None  # Reset after deleting
+                        last_notification_id = None  
                     except discord.NotFound:
-                        pass  # If the message was already deleted
+                        pass  
 
                 embed = discord.Embed(
                     title="⚫ Currently Offline",
@@ -85,12 +87,13 @@ async def check_youtube_stream():
                     color=discord.Color.dark_gray()
                 )
                 await message.edit(content="", embed=embed)
-                was_live = False  # Reset flag for next stream
+                was_live = False  
 
         except Exception as e:
-            print(f"Error checking YouTube stream: {e}")
+            print(f"❌ Error checking YouTube stream: {e}")
+            await asyncio.sleep(5)  # Wait 5 seconds before retrying
 
-        await asyncio.sleep(60)  # Check every minute
+        await asyncio.sleep(1200)  # Check every 20 minutes
 
 @client.event
 async def on_ready():
@@ -98,4 +101,3 @@ async def on_ready():
     client.loop.create_task(check_youtube_stream())
 
 client.run(DISCORD_TOKEN)
-
