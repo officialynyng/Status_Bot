@@ -1,1 +1,1 @@
-worker: python ynyng_StreamBot.py
+worker: python Status_Bot.py
