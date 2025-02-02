@@ -71,7 +71,7 @@ License
 
 MIT License. Free to use and modify. 
 
-```
+
 ██╗   ██╗███╗   ██╗██╗   ██╗███╗   ██╗ ██████╗ 
 ╚██╗ ██╔╝████╗  ██║╚██╗ ██╔╝████╗  ██║██╔════╝ 
  ╚████╔╝ ██╔██╗ ██║ ╚████╔╝ ██╔██╗ ██║██║  ███╗
@@ -81,3 +81,4 @@ MIT License. Free to use and modify.
                                                
                                                                                                                
 Developer: ynyng - ynyng LLC - ynyng@ynyng.org
+```
