@@ -9,16 +9,16 @@ Features
 
 Installation
 
-1️⃣ Clone the Repository
+1️. Clone the Repository
 
 git clone https://github.com/ynyng/Status_Bot.git
 cd status_bot
 
-2️⃣ Install Dependencies
+2️. Install Dependencies
 
 pip install -r requirements.txt
 
-3️⃣ Set Up the .env File
+3️. Set Up the .env File
 
 Create a .env file in the project directory and add:
 
@@ -28,7 +28,7 @@ YOUTUBE_CHANNEL_ID=your_youtube_channel_id
 DISCORD_CHANNEL_ID=your_discord_channel_id
 MESSAGE_ID=your_discord_message_id  # ID of the pinned message to edit
 
-4️⃣ Run the Bot
+4️. Run the Bot
 
 python status_bot.py
 
@@ -36,12 +36,12 @@ _________________
 
 Deploying to Heroku
 
-1️⃣ Login & Create App
+1️. Login & Create App
 
 heroku login
 heroku create your-app-name
 
-2️⃣ Set Config Variables
+2️. Set Config Variables
 
 heroku config:set DISCORD_TOKEN=your_discord_bot_token
 heroku config:set YOUTUBE_API_KEY=your_youtube_api_key
@@ -49,7 +49,7 @@ heroku config:set YOUTUBE_CHANNEL_ID=your_youtube_channel_id
 heroku config:set DISCORD_CHANNEL_ID=your_discord_channel_id
 heroku config:set MESSAGE_ID=your_discord_message_id
 
-3️⃣ Deploy to Heroku
+3️. Deploy to Heroku
 
 git add .
 git commit -m "Initial"
