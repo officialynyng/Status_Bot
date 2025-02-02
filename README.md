@@ -67,9 +67,7 @@ V. Resets when offline, ensuring the next stream gets a fresh announcement.
 
 Feel free to fork this repo, submit issues, or open a pull request if you have improvements! 🚀
 
-License
-
-MIT License. Free to use and modify. 
+Free to use and modify. 
 
 
 ██╗   ██╗███╗   ██╗██╗   ██╗███╗   ██╗ ██████╗ 
