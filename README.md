@@ -57,7 +57,11 @@ heroku ps:scale worker=1
 
 How It Works
 
-1️⃣ Bot checks YouTube every (60) seconds for live status.2️⃣ Edits the pinned message to show "🔴 LIVE NOW" or "⚫ Currently Offline".3️⃣ Sends a one-time notification when a stream starts.4️⃣ Deletes old notifications to prevent clutter.5️⃣ Resets when offline, ensuring the next stream gets a fresh announcement.
+I. Bot checks YouTube every (60) seconds for live status.
+II. Edits the pinned message to show "🔴 LIVE NOW" or "⚫ Currently Offline".
+III. Sends a one-time notification when a stream starts.
+IV. Deletes old notifications to prevent clutter.
+V. Resets when offline, ensuring the next stream gets a fresh announcement.
 
 
 Feel free to fork this repo, submit issues, or open a pull request if you have improvements! 🚀
