@@ -1,3 +1,4 @@
+```
 🛜 Status_bot 🛜
 
 A lightweight .py Discord bot configuration that tracks YouTube live status, updates a pinned message, and cleans up old notifications for a clutter-free server. 🚀
