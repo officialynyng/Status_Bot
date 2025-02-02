@@ -10,7 +10,7 @@ Installation
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/YOUR_USERNAME/status_bot.git
+git clone https://github.com/ynyng/status_bot.git
 cd status_bot
 
 2️⃣ Install Dependencies
